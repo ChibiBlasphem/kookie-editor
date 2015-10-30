@@ -1,0 +1,82 @@
+// compileCompressed: ../css/$1.min.css, compileExpanded: ../css/$1.css
+
+@import 'mixins';
+@import 'vars';
+
+body.#{$css-prefix}-unselectable {
+    @include compatibility(user-select, none);
+}
+
+.#{$css-prefix} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    .#{$css-prefix}-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        background-color: rgba($overlay-color, .95);
+    }
+    
+    .#{$css-prefix}-editor {
+        position: relative;
+        
+        width: 100%;
+        height: 100%;
+        
+        .#{$css-prefix}-image-background, .#{$css-prefix}-image-overlay, .#{$css-prefix}-grid-container {
+            position: absolute;
+            
+            top: 50%;
+            left: 50%;
+        }
+        
+        .#{$css-prefix}-image-background {
+            background-size: 100%;
+            background-position: 0 0;
+        }
+        
+        .#{$css-prefix}-image-overlay {
+            background-color: rgba(#000, .75);
+        }
+        
+        .#{$css-prefix}-grid-container {
+            .#{$css-prefix}-grid {
+                position: absolute;
+                box-shadow: inset 0 0 0 1px #fff;
+                cursor: move;
+                
+                @each $direction, $positions in $pin-data {
+                    .#{$css-prefix}-pin-#{$direction} {
+                        position: absolute;
+                        @each $prop, $value in $positions {
+                            #{$prop}: $value;
+                            border-#{$prop}: 2px solid #fff;
+                        }
+                        width: 10px;
+                        height: 10px;
+                        cursor: #{$direction}-resize;
+                    }
+                }
+            }
+        }
+        
+        &.#{$css-prefix}-gridmode-square {
+            .#{$css-prefix}-grid-container .#{$css-prefix}-grid {
+                border-radius: 0;
+            }
+        }
+        
+        &.#{$css-prefix}-gridmode-circle {
+            .#{$css-prefix}-grid-container .#{$css-prefix}-grid {
+                border-radius: 50%;
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+$css-prefix: keditor;
+
+$overlay-color: #f0ede9;
+
+$pin-data: (
+    nw: (top: -2px, left: -2px),
+    ne: (top: -2px, right: -2px),
+    se: (bottom: -2px, right:-2px),
+    sw: (bottom: -2px, left: -2px)
+);

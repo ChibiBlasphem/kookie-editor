@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Kookie Editor</title>
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body>
+        <div class="div-test"></div>
+        
+        <input type="file" name="image" />
+        <script src="js/vendors/jquery-2.1.4.js"></script>
+        <script src="js/kookie-editor.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('input[name="image"]').bind('change', function() {
+                    var file = this.files[0],
+                        reader = new FileReader(),
+                        dataUrl;
+                        
+                    reader.onloadend = function() {
+                        dataUrl = reader.result;
+                        if (dataUrl.indexOf('data:image') == 0) {
+                            $.KookieEditor()
+                                .load(dataUrl, {
+                                    gridmode: 'circle'
+                                });
+                        }
+                    };
+                    
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
