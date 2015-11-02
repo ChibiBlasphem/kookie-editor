@@ -45,15 +45,39 @@ body.keditor-unselectable {
 
 .keditor .keditor-editor .keditor-grid-container .keditor-grid {
   position: absolute;
-  box-shadow: inset 0 0 0 1px #fff;
   cursor: move;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  left: 0;
+  top: 0;
+}
+
+.keditor .keditor-editor .keditor-grid-container .keditor-grid .keditor-grid-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.keditor .keditor-editor .keditor-grid-container .keditor-grid .keditor-grid-image > img {
+  position: absolute;
+}
+
+.keditor .keditor-editor .keditor-grid-container .keditor-grid .keditor-grid-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .keditor .keditor-editor .keditor-grid-container .keditor-grid .keditor-pin-nw {
   position: absolute;
-  top: -2px;
+  top: -3px;
   border-top: 2px solid #fff;
-  left: -2px;
+  left: -3px;
   border-left: 2px solid #fff;
   width: 10px;
   height: 10px;
@@ -62,9 +86,9 @@ body.keditor-unselectable {
 
 .keditor .keditor-editor .keditor-grid-container .keditor-grid .keditor-pin-ne {
   position: absolute;
-  top: -2px;
+  top: -3px;
   border-top: 2px solid #fff;
-  right: -2px;
+  right: -3px;
   border-right: 2px solid #fff;
   width: 10px;
   height: 10px;
@@ -73,9 +97,9 @@ body.keditor-unselectable {
 
 .keditor .keditor-editor .keditor-grid-container .keditor-grid .keditor-pin-se {
   position: absolute;
-  bottom: -2px;
+  bottom: -3px;
   border-bottom: 2px solid #fff;
-  right: -2px;
+  right: -3px;
   border-right: 2px solid #fff;
   width: 10px;
   height: 10px;
@@ -84,9 +108,9 @@ body.keditor-unselectable {
 
 .keditor .keditor-editor .keditor-grid-container .keditor-grid .keditor-pin-sw {
   position: absolute;
-  bottom: -2px;
+  bottom: -3px;
   border-bottom: 2px solid #fff;
-  left: -2px;
+  left: -3px;
   border-left: 2px solid #fff;
   width: 10px;
   height: 10px;
@@ -97,6 +121,26 @@ body.keditor-unselectable {
   border-radius: 0;
 }
 
+.keditor .keditor-editor.keditor-gridmode-square .keditor-grid-container .keditor-grid .keditor-grid-overlay, .keditor .keditor-editor.keditor-gridmode-square .keditor-grid-container .keditor-grid .keditor-grid-image {
+  border-radius: 0;
+}
+
 .keditor .keditor-editor.keditor-gridmode-circle .keditor-grid-container .keditor-grid {
   border-radius: 50%;
+}
+
+.keditor .keditor-editor.keditor-gridmode-circle .keditor-grid-container .keditor-grid .keditor-grid-overlay, .keditor .keditor-editor.keditor-gridmode-circle .keditor-grid-container .keditor-grid .keditor-grid-image {
+  border-radius: 50%;
+}
+
+.keditor .keditor-editor.keditor-gridborder-solid .keditor-grid-container .keditor-grid {
+  border-style: solid;
+}
+
+.keditor .keditor-editor.keditor-gridborder-dashed .keditor-grid-container .keditor-grid {
+  border-style: dashed;
+}
+
+.keditor .keditor-editor.keditor-gridborder-dotted .keditor-grid-container .keditor-grid {
+  border-style: dotted;
 }

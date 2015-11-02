@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="div-test"></div>
-        
+
         <input type="file" name="image" />
         <script src="js/vendors/jquery-2.1.4.js"></script>
         <script src="js/kookie-editor.js"></script>
@@ -17,17 +17,17 @@
                     var file = this.files[0],
                         reader = new FileReader(),
                         dataUrl;
-                        
+
                     reader.onloadend = function() {
                         dataUrl = reader.result;
                         if (dataUrl.indexOf('data:image') == 0) {
                             $.KookieEditor()
                                 .load(dataUrl, {
-                                    gridmode: 'circle'
+                                    gridmode: 'square'
                                 });
                         }
                     };
-                    
+
                     if (file) {
                         reader.readAsDataURL(file);
                     }

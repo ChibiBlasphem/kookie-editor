@@ -13,50 +13,76 @@ body.#{$css-prefix}-unselectable {
     left: 0;
     width: 100%;
     height: 100%;
-    
+
     .#{$css-prefix}-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        
+
         background-color: rgba($overlay-color, .95);
     }
-    
+
     .#{$css-prefix}-editor {
         position: relative;
-        
+
         width: 100%;
         height: 100%;
-        
+
         .#{$css-prefix}-image-background, .#{$css-prefix}-image-overlay, .#{$css-prefix}-grid-container {
             position: absolute;
-            
+
             top: 50%;
             left: 50%;
         }
-        
+
         .#{$css-prefix}-image-background {
             background-size: 100%;
             background-position: 0 0;
         }
-        
+
         .#{$css-prefix}-image-overlay {
             background-color: rgba(#000, .75);
         }
-        
+
         .#{$css-prefix}-grid-container {
             .#{$css-prefix}-grid {
                 position: absolute;
-                box-shadow: inset 0 0 0 1px #fff;
                 cursor: move;
-                
+
+                box-sizing: border-box;
+                border: 1px solid transparent;
+
+                left: 0;
+                top: 0;
+
+                .#{$css-prefix}-grid-image {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    z-index: 0;
+                    & > img {
+                        position: absolute;
+                    }
+                }
+
+                .#{$css-prefix}-grid-overlay {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                    // box-shadow: inset 0 0 0 1px #fff;
+                }
+
                 @each $direction, $positions in $pin-data {
                     .#{$css-prefix}-pin-#{$direction} {
                         position: absolute;
                         @each $prop, $value in $positions {
-                            #{$prop}: $value;
+                            #{$prop}: $value - 1px;
                             border-#{$prop}: 2px solid #fff;
                         }
                         width: 10px;
@@ -66,16 +92,29 @@ body.#{$css-prefix}-unselectable {
                 }
             }
         }
-        
+
         &.#{$css-prefix}-gridmode-square {
             .#{$css-prefix}-grid-container .#{$css-prefix}-grid {
                 border-radius: 0;
+                .#{$css-prefix}-grid-overlay, .#{$css-prefix}-grid-image {
+                    border-radius: 0;
+                }
             }
         }
-        
         &.#{$css-prefix}-gridmode-circle {
             .#{$css-prefix}-grid-container .#{$css-prefix}-grid {
                 border-radius: 50%;
+                .#{$css-prefix}-grid-overlay, .#{$css-prefix}-grid-image {
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        @each $style in (solid, dashed, dotted) {
+            &.#{$css-prefix}-gridborder-#{$style} {
+                .#{$css-prefix}-grid-container .#{$css-prefix}-grid {
+                    border-style: $style;
+                }
             }
         }
     }
