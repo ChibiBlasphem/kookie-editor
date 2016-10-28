@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Layered Canvas</title>
+    </head>
+    <body>
+        <canvas></canvas>
+        <script src="./dist/main.js"></script>
+
+        <script>
+            let canvas = new Kookie.Canvas('canvas');
+            canvas.setSize(600, 400);
+
+            let shape = new Kookie.Shape([
+                {x: 20, y: 20},
+                {x: 100, y: 20},
+                {x: 100, y: 80},
+                {x: 20, y: 80}
+            ]);
+
+            let layer = new Kookie.Layer('Shapes');
+            layer.shapes.push(shape);
+
+            canvas.layers.push(layer);
+        </script>
+    </body>
+</html>
